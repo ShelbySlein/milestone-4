@@ -1,0 +1,65 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Does Height Matter in College Volleyball?",
+    "section": "",
+    "text": "College volleyball players vary in height, position, and playing style. This project asks whether taller players also have stronger on-court statistics, or whether height alone is a poor measure of performance.\n\nResearch question: Is player height associated with better college volleyball statistics after accounting for differences between positions?"
+  },
+  {
+    "objectID": "index.html#the-question",
+    "href": "index.html#the-question",
+    "title": "Does Height Matter in College Volleyball?",
+    "section": "",
+    "text": "College volleyball players vary in height, position, and playing style. This project asks whether taller players also have stronger on-court statistics, or whether height alone is a poor measure of performance.\n\nResearch question: Is player height associated with better college volleyball statistics after accounting for differences between positions?"
+  },
+  {
+    "objectID": "index.html#study-map",
+    "href": "index.html#study-map",
+    "title": "Does Height Matter in College Volleyball?",
+    "section": "Study map",
+    "text": "Study map\nThe central comparison is height and performance, while position and playing context help explain the relationship.\n\n\n\n\n\nflowchart LR\n    H[Player height] --&gt; P[Performance statistics]\n    S[Playing position] --&gt; P\n    S --&gt; H\n    T[Training and team strategy] --&gt; P\n    M[Matches and playing time] --&gt; P\n    P --&gt; K[Kills and hitting]\n    P --&gt; B[Blocks]\n    P --&gt; D[Digs and aces]\n\n    classDef focus fill:#0f766e,color:#ffffff,stroke:#115e59,stroke-width:2px;\n    classDef context fill:#fef3c7,color:#78350f,stroke:#d97706;\n    class H,P focus;\n    class S,T,M context;"
+  },
+  {
+    "objectID": "index.html#height-signal-explorer",
+    "href": "index.html#height-signal-explorer",
+    "title": "Does Height Matter in College Volleyball?",
+    "section": "Height signal explorer",
+    "text": "Height signal explorer\nTry a position and height to see how the expected statistical profile shifts. This is an illustrative interaction, not a result from the project dataset.\n\n\n    Interactive evidence lab\n    Change the player. Watch the profile move.\n    The same height can mean something different depending on a player's role. Use the controls to explore that idea before the real data are analyzed.\n    \n        \n            Choose a position\n            \n                Middle blocker\n                Outside hitter\n                Libero\n                Setter\n            \n            Player height\n            74 in188 cm\n            \n            5'0\"6'10\"\n        \n        \n            Illustrative profileMiddle blocker\n            Height may show its clearest signal in net play.\n            Kills\n            Blocks\n            Digs\n            Aces\n        \n    \n    The bars are a visual model for thinking about the question. They are not observed college volleyball statistics."
+  },
+  {
+    "objectID": "index.html#ncaa-division-i-snapshot",
+    "href": "index.html#ncaa-division-i-snapshot",
+    "title": "Does Height Matter in College Volleyball?",
+    "section": "NCAA Division I snapshot",
+    "text": "NCAA Division I snapshot\nThese are the top team-level values in the 2025 season final statistics published by the NCAA for Division I women’s volleyball. They anchor the scale of the sport while the player-level height data are assembled.\n\n\n    \n        \n            Hitting percentage\n            .351\n            NebraskaBig Ten\n            View NCAA table\n        \n        \n            Kills per set\n            15.17\n            WisconsinBig Ten\n            View NCAA table\n        \n        \n            Blocks per set\n            3.48\n            Utah ValleyWAC\n            View NCAA table\n        \n        \n            Digs per set\n            18.47\n            Gardner-WebbBig South\n            View NCAA table\n        \n    \n    Source: NCAA Statistics, academic year 2026.0 (2025-26), Division I, women’s volleyball, final statistics dated December 21, 2025."
+  },
+  {
+    "objectID": "index.html#what-will-be-compared",
+    "href": "index.html#what-will-be-compared",
+    "title": "Does Height Matter in College Volleyball?",
+    "section": "What will be compared",
+    "text": "What will be compared\nThe analysis will compare height with performance measures such as:\n\nkills and kills per set\nhitting percentage\nblocks and blocks per set\ndigs and digs per set\nservice aces\n\nPosition matters because a middle blocker and a libero are expected to contribute in different ways. The analysis should therefore look at the overall relationship and then examine positions separately."
+  },
+  {
+    "objectID": "index.html#working-hypothesis",
+    "href": "index.html#working-hypothesis",
+    "title": "Does Height Matter in College Volleyball?",
+    "section": "Working hypothesis",
+    "text": "Working hypothesis\nHeight may be most strongly related to blocking and attacking statistics. However, a relationship between height and a statistic would not show that height causes better performance. Skill, training, playing time, team strategy, and position may also explain differences between players."
+  },
+  {
+    "objectID": "index.html#analysis-plan",
+    "href": "index.html#analysis-plan",
+    "title": "Does Height Matter in College Volleyball?",
+    "section": "Analysis plan",
+    "text": "Analysis plan\n\nClean the player-level data and check for missing values.\nSummarize height and statistics with tables and visualizations.\nUse scatterplots and correlations to examine relationships.\nCompare results across playing positions.\nFit regression models that include height and position together.\n\nThe conclusion will focus on the strength and uncertainty of the evidence, not on whether height is a universal requirement for success."
+  },
+  {
+    "objectID": "index.html#current-status",
+    "href": "index.html#current-status",
+    "title": "Does Height Matter in College Volleyball?",
+    "section": "Current status",
+    "text": "Current status\nThis page now includes an official NCAA 2025-season benchmark. The next step is to combine player heights, positions, and individual statistics so the project can test whether height is associated with performance within and across positions."
+  }
+]
