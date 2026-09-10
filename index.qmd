@@ -1,0 +1,481 @@
+---
+title: "Does Height Matter in College Volleyball?"
+subtitle: "Exploring the relationship between player height and performance"
+---
+
+<style>
+:root {
+	--ink: #132a2f;
+	--muted: #5f7374;
+	--paper: #f5f0e8;
+	--card: #fffdf8;
+	--teal: #087f8c;
+	--coral: #e76f51;
+	--gold: #e9b949;
+	--line: #d9d4ca;
+}
+
+body {
+	background: var(--paper);
+	color: var(--ink);
+	font-family: "Avenir Next", "Trebuchet MS", sans-serif;
+}
+
+.quarto-title-block {
+	border-bottom: 1px solid var(--line);
+	margin-bottom: 2.25rem;
+	padding-bottom: 1.25rem;
+}
+
+.quarto-title h1 {
+	color: var(--ink);
+	font-size: clamp(2.4rem, 6vw, 5.5rem);
+	letter-spacing: 0;
+	line-height: .92;
+	max-width: 850px;
+}
+
+.quarto-title .subtitle {
+	color: var(--muted);
+	font-size: 1.15rem;
+	max-width: 620px;
+}
+
+.evidence-lab {
+	background: var(--ink);
+	border-radius: 8px;
+	color: #fdf9f1;
+	margin: 2rem 0 3rem;
+	overflow: hidden;
+	padding: clamp(1.25rem, 4vw, 3rem);
+	position: relative;
+}
+
+.evidence-lab::after {
+	border: 1px solid rgba(233, 185, 73, .4);
+	border-radius: 50%;
+	content: "";
+	height: 18rem;
+	position: absolute;
+	right: -5rem;
+	top: -7rem;
+	width: 18rem;
+}
+
+.lab-kicker {
+	color: var(--gold);
+	font-size: .75rem;
+	font-weight: 700;
+	letter-spacing: .13em;
+	margin: 0 0 .75rem;
+	position: relative;
+	text-transform: uppercase;
+	z-index: 1;
+}
+
+.lab-heading {
+	font-size: clamp(1.8rem, 4vw, 3.3rem);
+	line-height: 1;
+	margin: 0;
+	max-width: 640px;
+	position: relative;
+	z-index: 1;
+}
+
+.lab-description {
+	color: #c9d5d1;
+	line-height: 1.6;
+	max-width: 600px;
+	position: relative;
+	z-index: 1;
+}
+
+.lab-grid {
+	display: grid;
+	gap: 1.25rem;
+	grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
+	margin-top: 2rem;
+	position: relative;
+	z-index: 1;
+}
+
+.lab-controls, .lab-output {
+	background: rgba(255, 253, 248, .09);
+	border: 1px solid rgba(255, 253, 248, .18);
+	border-radius: 6px;
+	padding: 1.25rem;
+}
+
+.lab-label {
+	color: #c9d5d1;
+	display: block;
+	font-size: .8rem;
+	font-weight: 700;
+	letter-spacing: .08em;
+	margin-bottom: .7rem;
+	text-transform: uppercase;
+}
+
+.position-buttons {
+	display: flex;
+	flex-wrap: wrap;
+	gap: .5rem;
+	margin-bottom: 1.5rem;
+}
+
+.position-buttons button {
+	background: transparent;
+	border: 1px solid #6f8584;
+	border-radius: 999px;
+	color: #fdf9f1;
+	cursor: pointer;
+	font: inherit;
+	padding: .55rem .8rem;
+}
+
+.position-buttons button:hover, .position-buttons button.active {
+	background: var(--gold);
+	border-color: var(--gold);
+	color: var(--ink);
+}
+
+.height-readout {
+	align-items: baseline;
+	display: flex;
+	gap: .5rem;
+	justify-content: space-between;
+}
+
+.height-value {
+	color: var(--gold);
+	font-size: 2.5rem;
+	font-weight: 700;
+}
+
+.height-range {
+	accent-color: var(--coral);
+	cursor: pointer;
+	width: 100%;
+}
+
+.range-notes {
+	color: #c9d5d1;
+	display: flex;
+	font-size: .75rem;
+	justify-content: space-between;
+	margin-top: .35rem;
+}
+
+.output-header {
+	align-items: end;
+	display: flex;
+	justify-content: space-between;
+}
+
+.output-position {
+	color: var(--gold);
+	font-size: 1.25rem;
+	font-weight: 700;
+}
+
+.output-note {
+	color: #c9d5d1;
+	font-size: .8rem;
+	margin: .35rem 0 1.25rem;
+}
+
+.stat-row {
+	align-items: center;
+	display: grid;
+	gap: .75rem;
+	grid-template-columns: 90px 1fr 42px;
+	margin: .8rem 0;
+}
+
+.stat-name, .stat-score {
+	font-size: .85rem;
+}
+
+.stat-score {
+	color: var(--gold);
+	font-weight: 700;
+	text-align: right;
+}
+
+.stat-track {
+	background: rgba(255, 253, 248, .16);
+	border-radius: 99px;
+	height: 10px;
+	overflow: hidden;
+}
+
+.stat-fill {
+	background: linear-gradient(90deg, var(--coral), var(--gold));
+	border-radius: inherit;
+	height: 100%;
+	transition: width .35s ease;
+}
+
+.lab-footnote {
+	color: #9fb4b0;
+	font-size: .78rem;
+	margin: 1.5rem 0 0;
+	position: relative;
+	z-index: 1;
+}
+
+@media (max-width: 700px) {
+	.lab-grid { grid-template-columns: 1fr; }
+	.stat-row { grid-template-columns: 82px 1fr 38px; }
+}
+
+.ncaa-snapshot {
+	border-bottom: 1px solid var(--line);
+	border-top: 1px solid var(--line);
+	margin: 3rem 0;
+	padding: 2rem 0;
+}
+
+.snapshot-intro {
+	color: var(--muted);
+	max-width: 720px;
+}
+
+.snapshot-grid {
+	display: grid;
+	gap: .8rem;
+	grid-template-columns: repeat(4, 1fr);
+	margin-top: 1.5rem;
+}
+
+.snapshot-card {
+	background: var(--card);
+	border-left: 4px solid var(--teal);
+	box-shadow: 0 5px 16px rgba(19, 42, 47, .07);
+	padding: 1rem;
+}
+
+.snapshot-card:nth-child(2) { border-color: var(--coral); }
+.snapshot-card:nth-child(3) { border-color: var(--gold); }
+.snapshot-card:nth-child(4) { border-color: #6c63a8; }
+
+.snapshot-stat {
+	color: var(--muted);
+	display: block;
+	font-size: .75rem;
+	font-weight: 700;
+	letter-spacing: .05em;
+	text-transform: uppercase;
+}
+
+.snapshot-value {
+	display: block;
+	font-size: 2rem;
+	font-weight: 700;
+	line-height: 1.1;
+	margin: .5rem 0;
+}
+
+.snapshot-team {
+	font-size: .9rem;
+	margin: 0;
+}
+
+.snapshot-link {
+	color: var(--teal);
+	display: inline-block;
+	font-size: .75rem;
+	margin-top: .8rem;
+}
+
+.source-note {
+	color: var(--muted);
+	font-size: .8rem;
+	margin-bottom: 0;
+}
+
+@media (max-width: 850px) {
+	.snapshot-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 500px) {
+	.snapshot-grid { grid-template-columns: 1fr; }
+}
+</style>
+
+## The question
+
+College volleyball players vary in height, position, and playing style. This project asks whether taller players also have stronger on-court statistics, or whether height alone is a poor measure of performance.
+
+> **Research question:** Is player height associated with better college volleyball statistics after accounting for differences between positions?
+
+## Study map
+
+The central comparison is height and performance, while position and playing context help explain the relationship.
+
+```{mermaid}
+flowchart LR
+	H[Player height] --> P[Performance statistics]
+	S[Playing position] --> P
+	S --> H
+	T[Training and team strategy] --> P
+	M[Matches and playing time] --> P
+	P --> K[Kills and hitting]
+	P --> B[Blocks]
+	P --> D[Digs and aces]
+
+	classDef focus fill:#0f766e,color:#ffffff,stroke:#115e59,stroke-width:2px;
+	classDef context fill:#fef3c7,color:#78350f,stroke:#d97706;
+	class H,P focus;
+	class S,T,M context;
+```
+
+## Height signal explorer
+
+Try a position and height to see how the expected statistical profile shifts. This is an **illustrative interaction**, not a result from the project dataset.
+
+```{=html}
+<section class="evidence-lab" aria-label="Interactive height signal explorer">
+
+	<p class="lab-kicker">Interactive evidence lab</p>
+	<h2 class="lab-heading">Change the player. Watch the profile move.</h2>
+	<p class="lab-description">The same height can mean something different depending on a player's role. Use the controls to explore that idea before the real data are analyzed.</p>
+	<div class="lab-grid">
+		<div class="lab-controls">
+			<span class="lab-label">Choose a position</span>
+			<div class="position-buttons" role="group" aria-label="Choose a volleyball position">
+				<button class="active" data-position="Middle blocker">Middle blocker</button>
+				<button data-position="Outside hitter">Outside hitter</button>
+				<button data-position="Libero">Libero</button>
+				<button data-position="Setter">Setter</button>
+			</div>
+			<label class="lab-label" for="height-range">Player height</label>
+			<div class="height-readout"><span class="height-value" id="height-value">74 in</span><span id="height-cm">188 cm</span></div>
+			<input class="height-range" id="height-range" type="range" min="60" max="82" value="74" aria-label="Player height in inches">
+			<div class="range-notes"><span>5'0"</span><span>6'10"</span></div>
+		</div>
+		<div class="lab-output" aria-live="polite">
+			<div class="output-header"><span class="lab-label">Illustrative profile</span><span class="output-position" id="output-position">Middle blocker</span></div>
+			<p class="output-note" id="output-note">Height may show its clearest signal in net play.</p>
+			<div class="stat-row"><span class="stat-name">Kills</span><span class="stat-track"><span class="stat-fill" id="kills-fill"></span></span><span class="stat-score" id="kills-score"></span></div>
+			<div class="stat-row"><span class="stat-name">Blocks</span><span class="stat-track"><span class="stat-fill" id="blocks-fill"></span></span><span class="stat-score" id="blocks-score"></span></div>
+			<div class="stat-row"><span class="stat-name">Digs</span><span class="stat-track"><span class="stat-fill" id="digs-fill"></span></span><span class="stat-score" id="digs-score"></span></div>
+			<div class="stat-row"><span class="stat-name">Aces</span><span class="stat-track"><span class="stat-fill" id="aces-fill"></span></span><span class="stat-score" id="aces-score"></span></div>
+		</div>
+	</div>
+	<p class="lab-footnote">The bars are a visual model for thinking about the question. They are not observed college volleyball statistics.</p>
+
+</section>
+
+<script>
+const positionProfiles = {
+	"Middle blocker": { note: "Height may show its clearest signal in net play.", base: [58, 82, 18, 28], weight: [0.7, 1.2, 0.1, 0.2] },
+	"Outside hitter": { note: "A broad role makes context and playing time especially important.", base: [68, 48, 42, 36], weight: [0.8, 0.5, 0.4, 0.3] },
+	"Libero": { note: "Defensive impact is a useful test of whether height is overstated.", base: [12, 8, 86, 35], weight: [0.1, 0.05, -0.5, 0.2] },
+	"Setter": { note: "Decision-making and team system may matter more than reach.", base: [34, 22, 38, 48], weight: [0.3, 0.2, 0.1, 0.5] }
+};
+
+const heightRange = document.querySelector("#height-range");
+const heightValue = document.querySelector("#height-value");
+const heightCm = document.querySelector("#height-cm");
+const outputPosition = document.querySelector("#output-position");
+const outputNote = document.querySelector("#output-note");
+const statNames = ["kills", "blocks", "digs", "aces"];
+let selectedPosition = "Middle blocker";
+
+function updateExplorer() {
+	const height = Number(heightRange.value);
+	const profile = positionProfiles[selectedPosition];
+	const differenceFromAverage = height - 71;
+	heightValue.textContent = `${Math.floor(height / 12)}'${height % 12}"`;
+	heightCm.textContent = `${Math.round(height * 2.54)} cm`;
+	outputPosition.textContent = selectedPosition;
+	outputNote.textContent = profile.note;
+	profile.base.forEach((value, index) => {
+		const score = Math.max(5, Math.min(98, Math.round(value + differenceFromAverage * profile.weight[index])));
+		document.querySelector(`#${statNames[index]}-fill`).style.width = `${score}%`;
+		document.querySelector(`#${statNames[index]}-score`).textContent = `${score}`;
+	});
+}
+
+document.querySelectorAll(".position-buttons button").forEach((button) => {
+	button.addEventListener("click", () => {
+		document.querySelectorAll(".position-buttons button").forEach((item) => item.classList.remove("active"));
+		button.classList.add("active");
+		selectedPosition = button.dataset.position;
+		updateExplorer();
+	});
+});
+
+heightRange.addEventListener("input", updateExplorer);
+updateExplorer();
+</script>
+```
+
+## NCAA Division I snapshot
+
+These are the top team-level values in the **2025 season final statistics** published by the NCAA for Division I women’s volleyball. They anchor the scale of the sport while the player-level height data are assembled.
+
+```{=html}
+<section class="ncaa-snapshot" aria-label="NCAA 2025 season statistics">
+
+	<div class="snapshot-grid">
+		<article class="snapshot-card">
+			<span class="snapshot-stat">Hitting percentage</span>
+			<span class="snapshot-value">.351</span>
+			<p class="snapshot-team"><strong>Nebraska</strong><br>Big Ten</p>
+			<a class="snapshot-link" href="https://stats.ncaa.org/rankings/national_ranking?academic_year=2026.0&amp;division=1.0&amp;ranking_period=93.0&amp;sport_code=WVB&amp;stat_seq=45.0">View NCAA table</a>
+		</article>
+		<article class="snapshot-card">
+			<span class="snapshot-stat">Kills per set</span>
+			<span class="snapshot-value">15.17</span>
+			<p class="snapshot-team"><strong>Wisconsin</strong><br>Big Ten</p>
+			<a class="snapshot-link" href="https://stats.ncaa.org/rankings/national_ranking?academic_year=2026.0&amp;division=1.0&amp;ranking_period=93.0&amp;sport_code=WVB&amp;stat_seq=46.0">View NCAA table</a>
+		</article>
+		<article class="snapshot-card">
+			<span class="snapshot-stat">Blocks per set</span>
+			<span class="snapshot-value">3.48</span>
+			<p class="snapshot-team"><strong>Utah Valley</strong><br>WAC</p>
+			<a class="snapshot-link" href="https://stats.ncaa.org/rankings/national_ranking?academic_year=2026.0&amp;division=1.0&amp;ranking_period=93.0&amp;sport_code=WVB&amp;stat_seq=49.0">View NCAA table</a>
+		</article>
+		<article class="snapshot-card">
+			<span class="snapshot-stat">Digs per set</span>
+			<span class="snapshot-value">18.47</span>
+			<p class="snapshot-team"><strong>Gardner-Webb</strong><br>Big South</p>
+			<a class="snapshot-link" href="https://stats.ncaa.org/rankings/national_ranking?academic_year=2026.0&amp;division=1.0&amp;ranking_period=93.0&amp;sport_code=WVB&amp;stat_seq=50.0">View NCAA table</a>
+		</article>
+	</div>
+	<p class="source-note">Source: <a href="https://stats.ncaa.org/rankings/change_sport_year_div">NCAA Statistics</a>, academic year 2026.0 (2025-26), Division I, women’s volleyball, final statistics dated December 21, 2025.</p>
+
+</section>
+```
+
+## What will be compared
+
+The analysis will compare height with performance measures such as:
+
+- kills and kills per set
+- hitting percentage
+- blocks and blocks per set
+- digs and digs per set
+- service aces
+
+Position matters because a middle blocker and a libero are expected to contribute in different ways. The analysis should therefore look at the overall relationship and then examine positions separately.
+
+## Working hypothesis
+
+Height may be most strongly related to blocking and attacking statistics. However, a relationship between height and a statistic would not show that height causes better performance. Skill, training, playing time, team strategy, and position may also explain differences between players.
+
+## Analysis plan
+
+1. Clean the player-level data and check for missing values.
+2. Summarize height and statistics with tables and visualizations.
+3. Use scatterplots and correlations to examine relationships.
+4. Compare results across playing positions.
+5. Fit regression models that include height and position together.
+
+The conclusion will focus on the strength and uncertainty of the evidence, not on whether height is a universal requirement for success.
+
+## Current status
+
+This page now includes an official NCAA 2025-season benchmark. The next step is to combine player heights, positions, and individual statistics so the project can test whether height is associated with performance within and across positions.
