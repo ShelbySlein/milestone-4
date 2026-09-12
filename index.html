@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Does Height Matter in College Volleyball?</title>
+<title>The Height Signal</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -25,6 +25,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -73,14 +108,11 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
-<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -88,7 +120,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Does Height Matter in College Volleyball?</span>
+    <span class="navbar-title">The Height Signal</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -112,29 +144,14 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#the-question" id="toc-the-question" class="nav-link active" data-scroll-target="#the-question">The question</a></li>
-  <li><a href="#study-map" id="toc-study-map" class="nav-link" data-scroll-target="#study-map">Study map</a></li>
-  <li><a href="#height-signal-explorer" id="toc-height-signal-explorer" class="nav-link" data-scroll-target="#height-signal-explorer">Height signal explorer</a></li>
-  <li><a href="#ncaa-division-i-snapshot" id="toc-ncaa-division-i-snapshot" class="nav-link" data-scroll-target="#ncaa-division-i-snapshot">NCAA Division I snapshot</a></li>
-  <li><a href="#what-will-be-compared" id="toc-what-will-be-compared" class="nav-link" data-scroll-target="#what-will-be-compared">What will be compared</a></li>
-  <li><a href="#working-hypothesis" id="toc-working-hypothesis" class="nav-link" data-scroll-target="#working-hypothesis">Working hypothesis</a></li>
-  <li><a href="#analysis-plan" id="toc-analysis-plan" class="nav-link" data-scroll-target="#analysis-plan">Analysis plan</a></li>
-  <li><a href="#current-status" id="toc-current-status" class="nav-link" data-scroll-target="#current-status">Current status</a></li>
-  </ul>
-</nav>
-    </div>
+    
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Does Height Matter in College Volleyball?</h1>
-<p class="subtitle lead">Exploring the relationship between player height and performance</p>
+<h1 class="title">The Height Signal</h1>
+<p class="subtitle lead">20,000 player-season observations in one view</p>
 </div>
 
 
@@ -151,488 +168,69 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<style>
-:root {
-    --ink: #132a2f;
-    --muted: #5f7374;
-    --paper: #f5f0e8;
-    --card: #fffdf8;
-    --teal: #087f8c;
-    --coral: #e76f51;
-    --gold: #e9b949;
-    --line: #d9d4ca;
-}
-
-body {
-    background: var(--paper);
-    color: var(--ink);
-    font-family: "Avenir Next", "Trebuchet MS", sans-serif;
-}
-
-.quarto-title-block {
-    border-bottom: 1px solid var(--line);
-    margin-bottom: 2.25rem;
-    padding-bottom: 1.25rem;
-}
-
-.quarto-title h1 {
-    color: var(--ink);
-    font-size: clamp(2.4rem, 6vw, 5.5rem);
-    letter-spacing: 0;
-    line-height: .92;
-    max-width: 850px;
-}
-
-.quarto-title .subtitle {
-    color: var(--muted);
-    font-size: 1.15rem;
-    max-width: 620px;
-}
-
-.evidence-lab {
-    background: var(--ink);
-    border-radius: 8px;
-    color: #fdf9f1;
-    margin: 2rem 0 3rem;
-    overflow: hidden;
-    padding: clamp(1.25rem, 4vw, 3rem);
-    position: relative;
-}
-
-.evidence-lab::after {
-    border: 1px solid rgba(233, 185, 73, .4);
-    border-radius: 50%;
-    content: "";
-    height: 18rem;
-    position: absolute;
-    right: -5rem;
-    top: -7rem;
-    width: 18rem;
-}
-
-.lab-kicker {
-    color: var(--gold);
-    font-size: .75rem;
-    font-weight: 700;
-    letter-spacing: .13em;
-    margin: 0 0 .75rem;
-    position: relative;
-    text-transform: uppercase;
-    z-index: 1;
-}
-
-.lab-heading {
-    font-size: clamp(1.8rem, 4vw, 3.3rem);
-    line-height: 1;
-    margin: 0;
-    max-width: 640px;
-    position: relative;
-    z-index: 1;
-}
-
-.lab-description {
-    color: #c9d5d1;
-    line-height: 1.6;
-    max-width: 600px;
-    position: relative;
-    z-index: 1;
-}
-
-.lab-grid {
-    display: grid;
-    gap: 1.25rem;
-    grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
-    margin-top: 2rem;
-    position: relative;
-    z-index: 1;
-}
-
-.lab-controls, .lab-output {
-    background: rgba(255, 253, 248, .09);
-    border: 1px solid rgba(255, 253, 248, .18);
-    border-radius: 6px;
-    padding: 1.25rem;
-}
-
-.lab-label {
-    color: #c9d5d1;
-    display: block;
-    font-size: .8rem;
-    font-weight: 700;
-    letter-spacing: .08em;
-    margin-bottom: .7rem;
-    text-transform: uppercase;
-}
-
-.position-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: .5rem;
-    margin-bottom: 1.5rem;
-}
-
-.position-buttons button {
-    background: transparent;
-    border: 1px solid #6f8584;
-    border-radius: 999px;
-    color: #fdf9f1;
-    cursor: pointer;
-    font: inherit;
-    padding: .55rem .8rem;
-}
-
-.position-buttons button:hover, .position-buttons button.active {
-    background: var(--gold);
-    border-color: var(--gold);
-    color: var(--ink);
-}
-
-.height-readout {
-    align-items: baseline;
-    display: flex;
-    gap: .5rem;
-    justify-content: space-between;
-}
-
-.height-value {
-    color: var(--gold);
-    font-size: 2.5rem;
-    font-weight: 700;
-}
-
-.height-range {
-    accent-color: var(--coral);
-    cursor: pointer;
-    width: 100%;
-}
-
-.range-notes {
-    color: #c9d5d1;
-    display: flex;
-    font-size: .75rem;
-    justify-content: space-between;
-    margin-top: .35rem;
-}
-
-.output-header {
-    align-items: end;
-    display: flex;
-    justify-content: space-between;
-}
-
-.output-position {
-    color: var(--gold);
-    font-size: 1.25rem;
-    font-weight: 700;
-}
-
-.output-note {
-    color: #c9d5d1;
-    font-size: .8rem;
-    margin: .35rem 0 1.25rem;
-}
-
-.stat-row {
-    align-items: center;
-    display: grid;
-    gap: .75rem;
-    grid-template-columns: 90px 1fr 42px;
-    margin: .8rem 0;
-}
-
-.stat-name, .stat-score {
-    font-size: .85rem;
-}
-
-.stat-score {
-    color: var(--gold);
-    font-weight: 700;
-    text-align: right;
-}
-
-.stat-track {
-    background: rgba(255, 253, 248, .16);
-    border-radius: 99px;
-    height: 10px;
-    overflow: hidden;
-}
-
-.stat-fill {
-    background: linear-gradient(90deg, var(--coral), var(--gold));
-    border-radius: inherit;
-    height: 100%;
-    transition: width .35s ease;
-}
-
-.lab-footnote {
-    color: #9fb4b0;
-    font-size: .78rem;
-    margin: 1.5rem 0 0;
-    position: relative;
-    z-index: 1;
-}
-
-@media (max-width: 700px) {
-    .lab-grid { grid-template-columns: 1fr; }
-    .stat-row { grid-template-columns: 82px 1fr 38px; }
-}
-
-.ncaa-snapshot {
-    border-bottom: 1px solid var(--line);
-    border-top: 1px solid var(--line);
-    margin: 3rem 0;
-    padding: 2rem 0;
-}
-
-.snapshot-intro {
-    color: var(--muted);
-    max-width: 720px;
-}
-
-.snapshot-grid {
-    display: grid;
-    gap: .8rem;
-    grid-template-columns: repeat(4, 1fr);
-    margin-top: 1.5rem;
-}
-
-.snapshot-card {
-    background: var(--card);
-    border-left: 4px solid var(--teal);
-    box-shadow: 0 5px 16px rgba(19, 42, 47, .07);
-    padding: 1rem;
-}
-
-.snapshot-card:nth-child(2) { border-color: var(--coral); }
-.snapshot-card:nth-child(3) { border-color: var(--gold); }
-.snapshot-card:nth-child(4) { border-color: #6c63a8; }
-
-.snapshot-stat {
-    color: var(--muted);
-    display: block;
-    font-size: .75rem;
-    font-weight: 700;
-    letter-spacing: .05em;
-    text-transform: uppercase;
-}
-
-.snapshot-value {
-    display: block;
-    font-size: 2rem;
-    font-weight: 700;
-    line-height: 1.1;
-    margin: .5rem 0;
-}
-
-.snapshot-team {
-    font-size: .9rem;
-    margin: 0;
-}
-
-.snapshot-link {
-    color: var(--teal);
-    display: inline-block;
-    font-size: .75rem;
-    margin-top: .8rem;
-}
-
-.source-note {
-    color: var(--muted);
-    font-size: .8rem;
-    margin-bottom: 0;
-}
-
-@media (max-width: 850px) {
-    .snapshot-grid { grid-template-columns: repeat(2, 1fr); }
-}
-
-@media (max-width: 500px) {
-    .snapshot-grid { grid-template-columns: 1fr; }
-}
-</style>
-<section id="the-question" class="level2">
-<h2 class="anchored" data-anchor-id="the-question">The question</h2>
-<p>College volleyball players vary in height, position, and playing style. This project asks whether taller players also have stronger on-court statistics, or whether height alone is a poor measure of performance.</p>
-<blockquote class="blockquote">
-<p><strong>Research question:</strong> Is player height associated with better college volleyball statistics after accounting for differences between positions?</p>
-</blockquote>
-</section>
-<section id="study-map" class="level2">
-<h2 class="anchored" data-anchor-id="study-map">Study map</h2>
-<p>The central comparison is height and performance, while position and playing context help explain the relationship.</p>
-<div class="cell" data-layout-align="default">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2409</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">20000</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>position <span class="ot">&lt;-</span> <span class="fu">sample</span>(</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="st">"Middle blocker"</span>, <span class="st">"Outside hitter"</span>, <span class="st">"Setter"</span>, <span class="st">"Libero"</span>),</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  n,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">replace =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">prob =</span> <span class="fu">c</span>(.<span class="dv">22</span>, .<span class="dv">34</span>, .<span class="dv">18</span>, .<span class="dv">26</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>position_mean <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Middle blocker"</span> <span class="ot">=</span> <span class="dv">74</span>, <span class="st">"Outside hitter"</span> <span class="ot">=</span> <span class="dv">72</span>,</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>                   <span class="st">"Setter"</span> <span class="ot">=</span> <span class="dv">71</span>, <span class="st">"Libero"</span> <span class="ot">=</span> <span class="dv">67</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>position_effect <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Middle blocker"</span> <span class="ot">=</span> .<span class="dv">75</span>, <span class="st">"Outside hitter"</span> <span class="ot">=</span> .<span class="dv">45</span>,</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"Setter"</span> <span class="ot">=</span> .<span class="dv">15</span>, <span class="st">"Libero"</span> <span class="ot">=</span> <span class="sc">-</span>.<span class="dv">30</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>height <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, position_mean[position], <span class="fl">2.4</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>performance <span class="ot">&lt;-</span> <span class="dv">50</span> <span class="sc">+</span> position_effect[position] <span class="sc">*</span> (height <span class="sc">-</span> <span class="dv">70</span>) <span class="sc">+</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rnorm</span>(n, <span class="dv">0</span>, <span class="dv">10</span>)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>players <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">height =</span> height,</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">performance =</span> <span class="fu">pmax</span>(<span class="dv">1</span>, <span class="fu">pmin</span>(<span class="dv">99</span>, performance)),</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">position =</span> <span class="fu">factor</span>(position, <span class="at">levels =</span> <span class="fu">names</span>(position_mean))</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(players, <span class="fu">aes</span>(height, performance, <span class="at">colour =</span> position)) <span class="sc">+</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> .<span class="dv">13</span>, <span class="at">size =</span> .<span class="dv">8</span>) <span class="sc">+</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">formula =</span> y <span class="sc">~</span> x, <span class="at">se =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>              <span class="at">linewidth =</span> <span class="fl">1.3</span>, <span class="at">colour =</span> <span class="st">"#17202a"</span>) <span class="sc">+</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#e76f51"</span>, <span class="st">"#087f8c"</span>, <span class="st">"#e9b949"</span>, <span class="st">"#6c63a8"</span>)) <span class="sc">+</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">58</span>, <span class="dv">84</span>, <span class="dv">4</span>), <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">58</span>, <span class="dv">84</span>)) <span class="sc">+</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">20</span>), <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100</span>)) <span class="sc">+</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Player height (inches)"</span>,</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Composite performance score"</span>,</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour =</span> <span class="st">"Position"</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">14</span>) <span class="sc">+</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"#f5f0e8"</span>, <span class="at">colour =</span> <span class="cn">NA</span>),</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"#f5f0e8"</span>, <span class="at">colour =</span> <span class="cn">NA</span>),</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">"#d9d4ca"</span>, <span class="at">linewidth =</span> .<span class="dv">35</span>),</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">colour =</span> <span class="st">"#5f7374"</span>)</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart LR
-    H[Player height] --&gt; P[Performance statistics]
-    S[Playing position] --&gt; P
-    S --&gt; H
-    T[Training and team strategy] --&gt; P
-    M[Matches and playing time] --&gt; P
-    P --&gt; K[Kills and hitting]
-    P --&gt; B[Blocks]
-    P --&gt; D[Digs and aces]
-
-    classDef focus fill:#0f766e,color:#ffffff,stroke:#115e59,stroke-width:2px;
-    classDef context fill:#fef3c7,color:#78350f,stroke:#d97706;
-    class H,P focus;
-    class S,T,M context;
-</pre>
+<div id="fig-height-signal" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-height-signal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="index_files/figure-html/fig-height-signal-1.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
-<p></p></figure><p></p>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-height-signal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Each point is one simulated player-season observation. Height is measured in inches; performance is a composite of kills, blocks, digs, and aces, standardized within position.
+</figcaption>
+</figure>
 </div>
 </div>
 </div>
-</section>
-<section id="height-signal-explorer" class="level2">
-<h2 class="anchored" data-anchor-id="height-signal-explorer">Height signal explorer</h2>
-<p>Try a position and height to see how the expected statistical profile shifts. This is an <strong>illustrative interaction</strong>, not a result from the project dataset.</p>
-<section class="evidence-lab" aria-label="Interactive height signal explorer">
-
-    <p class="lab-kicker">Interactive evidence lab</p>
-    <h2 class="lab-heading anchored">Change the player. Watch the profile move.</h2>
-    <p class="lab-description">The same height can mean something different depending on a player's role. Use the controls to explore that idea before the real data are analyzed.</p>
-    <div class="lab-grid">
-        <div class="lab-controls">
-            <span class="lab-label">Choose a position</span>
-            <div class="position-buttons" role="group" aria-label="Choose a volleyball position">
-                <button class="active" data-position="Middle blocker">Middle blocker</button>
-                <button data-position="Outside hitter">Outside hitter</button>
-                <button data-position="Libero">Libero</button>
-                <button data-position="Setter">Setter</button>
-            </div>
-            <label class="lab-label" for="height-range">Player height</label>
-            <div class="height-readout"><span class="height-value" id="height-value">74 in</span><span id="height-cm">188 cm</span></div>
-            <input class="height-range" id="height-range" type="range" min="60" max="82" value="74" aria-label="Player height in inches">
-            <div class="range-notes"><span>5'0"</span><span>6'10"</span></div>
-        </div>
-        <div class="lab-output" aria-live="polite">
-            <div class="output-header"><span class="lab-label">Illustrative profile</span><span class="output-position" id="output-position">Middle blocker</span></div>
-            <p class="output-note" id="output-note">Height may show its clearest signal in net play.</p>
-            <div class="stat-row"><span class="stat-name">Kills</span><span class="stat-track"><span class="stat-fill" id="kills-fill"></span></span><span class="stat-score" id="kills-score"></span></div>
-            <div class="stat-row"><span class="stat-name">Blocks</span><span class="stat-track"><span class="stat-fill" id="blocks-fill"></span></span><span class="stat-score" id="blocks-score"></span></div>
-            <div class="stat-row"><span class="stat-name">Digs</span><span class="stat-track"><span class="stat-fill" id="digs-fill"></span></span><span class="stat-score" id="digs-score"></span></div>
-            <div class="stat-row"><span class="stat-name">Aces</span><span class="stat-track"><span class="stat-fill" id="aces-fill"></span></span><span class="stat-score" id="aces-score"></span></div>
-        </div>
-    </div>
-    <p class="lab-footnote">The bars are a visual model for thinking about the question. They are not observed college volleyball statistics.</p>
-
-</section>
-
-<script>
-const positionProfiles = {
-    "Middle blocker": { note: "Height may show its clearest signal in net play.", base: [58, 82, 18, 28], weight: [0.7, 1.2, 0.1, 0.2] },
-    "Outside hitter": { note: "A broad role makes context and playing time especially important.", base: [68, 48, 42, 36], weight: [0.8, 0.5, 0.4, 0.3] },
-    "Libero": { note: "Defensive impact is a useful test of whether height is overstated.", base: [12, 8, 86, 35], weight: [0.1, 0.05, -0.5, 0.2] },
-    "Setter": { note: "Decision-making and team system may matter more than reach.", base: [34, 22, 38, 48], weight: [0.3, 0.2, 0.1, 0.5] }
-};
-
-const heightRange = document.querySelector("#height-range");
-const heightValue = document.querySelector("#height-value");
-const heightCm = document.querySelector("#height-cm");
-const outputPosition = document.querySelector("#output-position");
-const outputNote = document.querySelector("#output-note");
-const statNames = ["kills", "blocks", "digs", "aces"];
-let selectedPosition = "Middle blocker";
-
-function updateExplorer() {
-    const height = Number(heightRange.value);
-    const profile = positionProfiles[selectedPosition];
-    const differenceFromAverage = height - 71;
-    heightValue.textContent = `${Math.floor(height / 12)}'${height % 12}"`;
-    heightCm.textContent = `${Math.round(height * 2.54)} cm`;
-    outputPosition.textContent = selectedPosition;
-    outputNote.textContent = profile.note;
-    profile.base.forEach((value, index) => {
-        const score = Math.max(5, Math.min(98, Math.round(value + differenceFromAverage * profile.weight[index])));
-        document.querySelector(`#${statNames[index]}-fill`).style.width = `${score}%`;
-        document.querySelector(`#${statNames[index]}-score`).textContent = `${score}`;
-    });
-}
-
-document.querySelectorAll(".position-buttons button").forEach((button) => {
-    button.addEventListener("click", () => {
-        document.querySelectorAll(".position-buttons button").forEach((item) => item.classList.remove("active"));
-        button.classList.add("active");
-        selectedPosition = button.dataset.position;
-        updateExplorer();
-    });
-});
-
-heightRange.addEventListener("input", updateExplorer);
-updateExplorer();
-</script>
-</section>
-<section id="ncaa-division-i-snapshot" class="level2">
-<h2 class="anchored" data-anchor-id="ncaa-division-i-snapshot">NCAA Division I snapshot</h2>
-<p>These are the top team-level values in the <strong>2025 season final statistics</strong> published by the NCAA for Division I women’s volleyball. They anchor the scale of the sport while the player-level height data are assembled.</p>
-<section class="ncaa-snapshot" aria-label="NCAA 2025 season statistics">
-
-    <div class="snapshot-grid">
-        <article class="snapshot-card">
-            <span class="snapshot-stat">Hitting percentage</span>
-            <span class="snapshot-value">.351</span>
-            <p class="snapshot-team"><strong>Nebraska</strong><br>Big Ten</p>
-            <a class="snapshot-link" href="https://stats.ncaa.org/rankings/national_ranking?academic_year=2026.0&amp;division=1.0&amp;ranking_period=93.0&amp;sport_code=WVB&amp;stat_seq=45.0">View NCAA table</a>
-        </article>
-        <article class="snapshot-card">
-            <span class="snapshot-stat">Kills per set</span>
-            <span class="snapshot-value">15.17</span>
-            <p class="snapshot-team"><strong>Wisconsin</strong><br>Big Ten</p>
-            <a class="snapshot-link" href="https://stats.ncaa.org/rankings/national_ranking?academic_year=2026.0&amp;division=1.0&amp;ranking_period=93.0&amp;sport_code=WVB&amp;stat_seq=46.0">View NCAA table</a>
-        </article>
-        <article class="snapshot-card">
-            <span class="snapshot-stat">Blocks per set</span>
-            <span class="snapshot-value">3.48</span>
-            <p class="snapshot-team"><strong>Utah Valley</strong><br>WAC</p>
-            <a class="snapshot-link" href="https://stats.ncaa.org/rankings/national_ranking?academic_year=2026.0&amp;division=1.0&amp;ranking_period=93.0&amp;sport_code=WVB&amp;stat_seq=49.0">View NCAA table</a>
-        </article>
-        <article class="snapshot-card">
-            <span class="snapshot-stat">Digs per set</span>
-            <span class="snapshot-value">18.47</span>
-            <p class="snapshot-team"><strong>Gardner-Webb</strong><br>Big South</p>
-            <a class="snapshot-link" href="https://stats.ncaa.org/rankings/national_ranking?academic_year=2026.0&amp;division=1.0&amp;ranking_period=93.0&amp;sport_code=WVB&amp;stat_seq=50.0">View NCAA table</a>
-        </article>
-    </div>
-    <p class="source-note">Source: <a href="https://stats.ncaa.org/rankings/change_sport_year_div">NCAA Statistics</a>, academic year 2026.0 (2025-26), Division I, women’s volleyball, final statistics dated December 21, 2025.</p>
-
-</section>
-</section>
-<section id="what-will-be-compared" class="level2">
-<h2 class="anchored" data-anchor-id="what-will-be-compared">What will be compared</h2>
-<p>The analysis will compare height with performance measures such as:</p>
-<ul>
-<li>kills and kills per set</li>
-<li>hitting percentage</li>
-<li>blocks and blocks per set</li>
-<li>digs and digs per set</li>
-<li>service aces</li>
-</ul>
-<p>Position matters because a middle blocker and a libero are expected to contribute in different ways. The analysis should therefore look at the overall relationship and then examine positions separately.</p>
-</section>
-<section id="working-hypothesis" class="level2">
-<h2 class="anchored" data-anchor-id="working-hypothesis">Working hypothesis</h2>
-<p>Height may be most strongly related to blocking and attacking statistics. However, a relationship between height and a statistic would not show that height causes better performance. Skill, training, playing time, team strategy, and position may also explain differences between players.</p>
-</section>
-<section id="analysis-plan" class="level2">
-<h2 class="anchored" data-anchor-id="analysis-plan">Analysis plan</h2>
-<ol type="1">
-<li>Clean the player-level data and check for missing values.</li>
-<li>Summarize height and statistics with tables and visualizations.</li>
-<li>Use scatterplots and correlations to examine relationships.</li>
-<li>Compare results across playing positions.</li>
-<li>Fit regression models that include height and position together.</li>
-</ol>
-<p>The conclusion will focus on the strength and uncertainty of the evidence, not on whether height is a universal requirement for success.</p>
-</section>
-<section id="current-status" class="level2">
-<h2 class="anchored" data-anchor-id="current-status">Current status</h2>
-<p>This page now includes an official NCAA 2025-season benchmark. The next step is to combine player heights, positions, and individual statistics so the project can test whether height is associated with performance within and across positions.</p>
+<p>This graphic uses simulated observations to show the intended shape of the analysis. The real project should replace the simulation with collected player-level data before making claims about college volleyball.</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -708,7 +306,7 @@ updateExplorer();
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/ShelbySlein\.github\.io\/milestone-4\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
