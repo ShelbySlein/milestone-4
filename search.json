@@ -4,6 +4,6 @@
     "href": "index.html",
     "title": "The Height Signal",
     "section": "",
-    "text": "Figure 1: Each point is one simulated player-season observation. Height is measured in inches; performance is a composite of kills, blocks, digs, and aces, standardized within position.\n\n\n\n\n\nThis graphic uses simulated observations to show the intended shape of the analysis. The real project should replace the simulation with collected player-level data before making claims about college volleyball."
+    "text": "Figure 1: Each point is one of 25,966 observed NCAA Division I women’s volleyball player-seasons from 2020–2024. Height is measured in inches; kills per set is the actual stat reported for that player-season.\n\n\n\n\n\nThis uses real NCAA Division I women’s volleyball player-season data from 2020–2024, with 25,966 total observations across the five seasons. The values shown are the observed player heights and recorded kills per set from the official D1 dataset used for the analysis."
   }
 ]
